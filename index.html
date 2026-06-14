@@ -4,7 +4,6 @@
 <title>The Owl Chamber</title>
 
 <style>
-
 body{
     margin:0;
     background:black;
@@ -33,7 +32,6 @@ video{
     font-style:italic;
     opacity:.8;
 }
-
 </style>
 </head>
 
@@ -47,16 +45,46 @@ video{
 You have discovered the hidden owl.
 </p>
 
-<video autoplay muted loop playsinline>
+<!-- CLICK OVERLAY -->
+<div id="overlay" onclick="startVideo()"
+style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:2em;
+cursor:pointer;
+z-index:10;
+">
+CLICK HERE
+</div>
 
-<source src="owl.mp4" type="video/mp4">
-
+<!-- VIDEO -->
+<video id="owlVideo" playsinline>
+    <source src="owl.mp4" type="video/mp4">
 </video>
 
+<!-- SCRIPT -->
+<script>
+function startVideo() {
+    const video = document.getElementById("owlVideo");
+    const overlay = document.getElementById("overlay");
+
+    setTimeout(() => {
+        video.muted = false;
+        video.play();
+        overlay.style.display = "none";
+    }, 1000);
+}
+</script>
+
 <div class="quote">
-
 "The forest knows."
-
 </div>
 
 </div>
