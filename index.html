@@ -34,19 +34,24 @@ video{
     margin-top:20px;
     font-style:italic;
     opacity:.8;
+    
+#pageContent{
+    transition: transform 1s ease;
 }
 </style>
 </head>
 
 <body>
 
+<div id="pageContent">
+
 <div class="container">
 
-<h1>🦉 The Owl Chamber 🦉</h1>
+    <h1>🦉 The Owl Chamber 🦉</h1>
 
-<p>
-You have discovered the hidden owl.
-</p>
+    <p>
+    You have discovered the hidden owl.
+    </p>
 
 <!-- CLICK OVERLAY -->
 <div id="overlay" onclick="startVideo()"
@@ -78,6 +83,8 @@ function startVideo() {
     const video = document.getElementById("owlVideo");
     const overlay = document.getElementById("overlay");
 
+    document.body.style.zoom = "50%";
+
     setTimeout(() => {
         video.muted = false;
         video.play();
@@ -90,6 +97,9 @@ function startVideo() {
 "The forest knows."
 </div>
 
+</div>
+
+</div>
 </div>
 
 </body>
