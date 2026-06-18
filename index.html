@@ -4,40 +4,73 @@
 <title>The Owl Chamber</title>
 
 <style>
+
 body{
     margin:0;
     background:black;
     color:white;
     font-family:Georgia, serif;
     text-align:center;
+    overflow:hidden;
 }
 
-.container{
-    margin-top:10px;
+#pageContent{
+    transition:transform 1s ease;
 }
 
-h1{
+.centerBanner{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    align-items:center;
+    gap:40px;
+    z-index:2;
+}
+
+.centerBanner h1{
+    margin:0;
     font-size:3em;
+    white-space:nowrap;
 }
 
-video{
+.sideOwl{
+    width:180px;
+    border-radius:15px;
+    box-shadow:0 0 30px rgba(255,255,255,.3);
+}
+
+#owlVideo{
     width:80%;
     max-width:900px;
     border-radius:15px;
     box-shadow:0 0 30px rgba(255,255,255,.3);
-    margin-top:-20px;  /* THIS pulls it upward */
-    
-    transform: scale(0.60);   /* 👈 zoom out */
+    margin-top:120px;
+    transform:scale(0.60);
 }
 
 .quote{
     margin-top:20px;
     font-style:italic;
     opacity:.8;
-    
-#pageContent{
-    transition: transform 1s ease;
 }
+
+#overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2em;
+    cursor:pointer;
+    z-index:10;
+}
+
 </style>
 </head>
 
@@ -45,53 +78,27 @@ video{
 
 <div id="pageContent">
 
-<div class="container">
+<div class="centerBanner">
+
+    <video class="sideOwl" autoplay muted loop playsinline>
+        <source src="owl.mp4" type="video/mp4">
+    </video>
 
     <h1>🦉 The Owl Chamber 🦉</h1>
 
-    <p>
-    You have discovered the hidden owl.
-    </p>
+    <video class="sideOwl" autoplay muted loop playsinline>
+        <source src="owl.mp4" type="video/mp4">
+    </video>
 
-<!-- CLICK OVERLAY -->
-<div id="overlay" onclick="startVideo()"
-style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:2em;
-cursor:pointer;
-z-index:10;
-">
-CLICK HERE
 </div>
 
-<!-- VIDEO -->
+<div id="overlay" onclick="startVideo()">
+    CLICK HERE
+</div>
+
 <video id="owlVideo" playsinline>
     <source src="owl.mp4" type="video/mp4">
 </video>
-
-<!-- SCRIPT -->
-<script>
-function startVideo() {
-    const video = document.getElementById("owlVideo");
-    const overlay = document.getElementById("overlay");
-
-    document.body.style.zoom = "50%";
-
-    setTimeout(() => {
-        video.muted = false;
-        video.play();
-        overlay.style.display = "none";
-    }, 1000);
-}
-</script>
 
 <div class="quote">
 "The forest knows."
@@ -99,8 +106,26 @@ function startVideo() {
 
 </div>
 
-</div>
-</div>
+<script>
+
+function startVideo() {
+
+    const video = document.getElementById("owlVideo");
+    const overlay = document.getElementById("overlay");
+    const page = document.getElementById("pageContent");
+
+    page.style.transform = "scale(0.5)";
+    page.style.transformOrigin = "top center";
+
+    setTimeout(() => {
+        video.muted = false;
+        video.play();
+        overlay.style.display = "none";
+    }, 1000);
+
+}
+
+</script>
 
 </body>
 </html>
